@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
-  
-  
+  <title>Divano Blog</title>
+  <icon>https://www.gravatar.com/avatar/796a30d84ae8357b12b7d2c83d29ea5f</icon>
+  <subtitle>Never Give Up!</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.zhengtianyu.com/"/>
@@ -11,7 +11,7 @@
   
   <author>
     <name>Divano</name>
-    
+    <email>550335698@qq.com</email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
