@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.zhengtianyu.com/"/>
-  <updated>2019-06-20T13:02:08.023Z</updated>
+  <updated>2019-07-11T03:49:26.779Z</updated>
   <id>http://www.zhengtianyu.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>numpy学习</title>
+    <link href="http://www.zhengtianyu.com/2019/07/11/numpy%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://www.zhengtianyu.com/2019/07/11/numpy学习/</id>
+    <published>2019-07-11T03:48:45.000Z</published>
+    <updated>2019-07-11T03:49:26.779Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="技巧" scheme="http://www.zhengtianyu.com/categories/%E6%8A%80%E5%B7%A7/"/>
+    
+    
+      <category term="numpy" scheme="http://www.zhengtianyu.com/tags/numpy/"/>
+    
+  </entry>
   
   <entry>
     <title>markdown</title>
