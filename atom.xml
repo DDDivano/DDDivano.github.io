@@ -6,7 +6,7 @@
   <link href="http://www.zhengtianyu.com/atom.xml" rel="self"/>
   
   <link href="http://www.zhengtianyu.com/"/>
-  <updated>2021-08-17T10:23:24.506Z</updated>
+  <updated>2021-08-18T08:46:03.801Z</updated>
   <id>http://www.zhengtianyu.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test images</title>
+    <link href="http://www.zhengtianyu.com/2021/08/17/test-images/"/>
+    <id>http://www.zhengtianyu.com/2021/08/17/test-images/</id>
+    <published>2021-08-17T11:01:44.000Z</published>
+    <updated>2021-08-18T08:46:03.801Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2021/08/17/test-images/avatar.jpeg" alt="这是代替图片的文字，随便写"></p><p>爱仕达大厦<br>爱仕达大厦</p><span id="more"></span><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p><p>爱仕达大厦</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2021/08/17/test-images/avatar.jpeg&quot; alt=&quot;这是代替图片的文字，随便写&quot;&gt;&lt;/p&gt;
+&lt;p&gt;爱仕达大厦&lt;br&gt;爱仕达大厦&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>my first blog</title>
