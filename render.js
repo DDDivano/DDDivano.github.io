@@ -40,7 +40,17 @@
     $('links').appendChild(a);
   });
 
-  (p.intro || []).forEach((t) => $('intro').appendChild(el('p', null, esc(t))));
+  // 轻标记：**加粗**；段首 "> " 渲染成引用块
+  const rich = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-slate-800 dark:text-slate-100">$1</strong>');
+  (p.intro || []).forEach((t) => {
+    if (t.startsWith('> ')) {
+      $('intro').appendChild(el('blockquote',
+        'mt-5 pl-4 border-l-2 border-sky-500 italic text-slate-700 dark:text-slate-200',
+        rich(t.slice(2))));
+    } else {
+      $('intro').appendChild(el('p', null, rich(t)));
+    }
+  });
 
   // ---- 数字亮点 ----
   const hs = R.highlights || [];
@@ -69,6 +79,26 @@
       item.appendChild(row);
     }
     $('timeline').appendChild(item);
+  });
+
+  // ---- 横向经历 / Selected Contributions ----
+  const fs = R.featured || [];
+  if (!fs.length) $('featured').remove();
+  fs.forEach((f) => {
+    const card = el('div', 'card rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-900');
+    card.appendChild(el('h3', 'font-semibold', esc(f.title)));
+    if (f.meta) card.appendChild(el('div', 'mt-0.5 text-xs text-slate-500 dark:text-slate-400', esc(f.meta)));
+    if (f.points && f.points.length) {
+      const ul = el('ul', 'mt-3 space-y-1.5 text-sm text-slate-600 dark:text-slate-300 list-disc list-outside ml-4');
+      f.points.forEach((x) => ul.appendChild(el('li', null, esc(x))));
+      card.appendChild(ul);
+    }
+    if (f.tags && f.tags.length) {
+      const row = el('div', 'mt-3 flex flex-wrap gap-1.5');
+      f.tags.forEach((x) => row.appendChild(el('span', TAG, esc(x))));
+      card.appendChild(row);
+    }
+    $('featured-list').appendChild(card);
   });
 
   // ---- 项目卡片 ----
