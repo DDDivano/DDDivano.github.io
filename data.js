@@ -9,7 +9,7 @@ window.RESUME = {
     url: "https://dddivano.github.io/",
     repo: "https://github.com/DDDivano/DDDivano.github.io",
     // 浏览器标签页和搜索结果里的标题
-    pageTitle: "郑天宇 Divano Zheng · AI Infra 质量工程",
+    pageTitle: "Divano Zheng · AI Infra 质量工程",
     // 搜索摘要 / 微信、Slack、LinkedIn 分享卡片的描述
     description:
       "百度 AI Infra 质量工程师。飞桨 PaddlePaddle 框架级质量体系负责人，FastDeploy / SGLang 推理引擎 CI-CE 从 0 到 1，现在做 SWE 数据质量与大模型评测。",
@@ -18,7 +18,8 @@ window.RESUME = {
   // ---------- 顶部 ----------
   profile: {
     name: "Divano Zheng",
-    nameZh: "郑天宇",
+    // 想让中文名出现在页面标题里，把 nameZh 填上
+    nameZh: "",
     handle: "Divano",
     tagline: "AI 质量工程 · 深度学习框架 · 大模型推理 · 数据质量",
     // 支持两种轻标记：**加粗**、段首 "> " 渲染成引用块
@@ -34,7 +35,7 @@ window.RESUME = {
     location: "北京",
     // 头像：放一张图在仓库根目录，或者留空用首字母占位
     avatar: "avatar.jpeg",
-    avatarAlt: "郑天宇的头像",
+    avatarAlt: "Divano Zheng 的头像",
     links: [
       { label: "GitHub", url: "https://github.com/DDDivano" },
       { label: "邮箱", url: "mailto:DDDivano@outlook.com" },
