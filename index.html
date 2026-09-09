@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>郑天宇 · DDDivano</title>
+<meta name="description" content="大模型推理引擎质量保障 — 个人主页" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { darkMode: 'class' };
+  // 主题优先跟随上次选择，其次跟随系统
+  (function () {
+    var t = localStorage.getItem('theme');
+    if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  })();
+</script>
+<style>
+  .fade-up { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+  .fade-up.in { opacity: 1; transform: none; }
+  @media print {
+    .no-print { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+    .card { break-inside: avoid; border-color: #ddd !important; }
+  }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 antialiased">
+
+<!-- 顶部导航 -->
+<header class="no-print sticky top-0 z-20 backdrop-blur bg-slate-50/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between text-sm">
+    <a href="#top" class="font-semibold tracking-tight" id="nav-name"></a>
+    <div class="flex items-center gap-1 sm:gap-4">
+      <a href="#experience" class="hidden sm:inline hover:text-sky-600 dark:hover:text-sky-400">经历</a>
+      <a href="#projects" class="hidden sm:inline hover:text-sky-600 dark:hover:text-sky-400">项目</a>
+      <a href="#skills" class="hidden sm:inline hover:text-sky-600 dark:hover:text-sky-400">技能</a>
+      <button id="theme-toggle" title="切换主题"
+        class="ml-2 w-8 h-8 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800">◐</button>
+      <button onclick="window.print()" title="打印 / 存 PDF"
+        class="w-8 h-8 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800">⎙</button>
+    </div>
+  </nav>
+</header>
+
+<main id="top" class="max-w-4xl mx-auto px-6 py-12 sm:py-16">
+  <!-- 个人信息 -->
+  <section class="fade-up flex flex-col sm:flex-row gap-6 sm:items-center">
+    <div id="avatar" class="shrink-0"></div>
+    <div class="min-w-0">
+      <h1 id="name" class="text-3xl sm:text-4xl font-bold tracking-tight"></h1>
+      <p id="tagline" class="mt-2 text-sky-600 dark:text-sky-400"></p>
+      <p id="meta" class="mt-1 text-sm text-slate-500 dark:text-slate-400"></p>
+      <div id="links" class="mt-4 flex flex-wrap gap-2 text-sm"></div>
+    </div>
+  </section>
+
+  <section id="intro" class="fade-up mt-8 space-y-3 leading-relaxed text-slate-600 dark:text-slate-300"></section>
+
+  <section id="highlights" class="fade-up mt-10 grid grid-cols-3 gap-3"></section>
+
+  <!-- 经历 -->
+  <section id="experience" class="fade-up mt-16">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400">这些年做了什么</h2>
+    <div id="timeline" class="mt-6 border-l border-slate-200 dark:border-slate-800"></div>
+  </section>
+
+  <!-- 项目 -->
+  <section id="projects" class="fade-up mt-16">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400">项目与开源</h2>
+    <div id="project-grid" class="mt-6 grid sm:grid-cols-2 gap-4"></div>
+  </section>
+
+  <!-- 技能 -->
+  <section id="skills" class="fade-up mt-16">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400">技能</h2>
+    <div id="skill-list" class="mt-6 space-y-4"></div>
+  </section>
+
+  <footer id="footer" class="mt-20 pt-8 border-t border-slate-200 dark:border-slate-800 text-sm text-slate-500 dark:text-slate-400"></footer>
+</main>
+
+<script src="data.js"></script>
+<script src="render.js"></script>
+</body>
+</html>
