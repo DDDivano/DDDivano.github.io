@@ -3,44 +3,87 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>郑天宇 · DDDivano</title>
-<meta name="description" content="大模型推理引擎质量保障 — 个人主页" />
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- 主题类必须在首屏绘制前打上，所以这段单独放最前面，且不依赖任何外部脚本 -->
 <script>
-  tailwind.config = { darkMode: 'class' };
-  // 主题优先跟随上次选择，其次跟随系统
   (function () {
-    var t = localStorage.getItem('theme');
-    if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-    }
+    var d = document.documentElement;
+    d.classList.add('js');
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+        d.classList.add('dark');
+      }
+    } catch (e) {}
   })();
 </script>
+
+<!-- 下面这些 meta 必须是静态的：抓取器和分享卡片不跑 JS。
+     改动时记得跟 data.js 里的 site 字段保持一致。 -->
+<title>郑天宇 Divano Zheng · AI Infra 质量工程</title>
+<meta name="description" content="百度 AI Infra 质量工程师。飞桨 PaddlePaddle 框架级质量体系负责人，FastDeploy / SGLang 推理引擎 CI-CE 从 0 到 1，现在做 SWE 数据质量与大模型评测。" />
+<link rel="canonical" href="https://dddivano.github.io/" />
+<meta property="og:type" content="profile" />
+<meta property="og:url" content="https://dddivano.github.io/" />
+<meta property="og:title" content="郑天宇 Divano Zheng · AI Infra 质量工程" />
+<meta property="og:description" content="飞桨 PaddlePaddle 框架级质量体系负责人，FastDeploy / SGLang 推理引擎 CI-CE 从 0 到 1，现在做 SWE 数据质量与大模型评测。" />
+<meta property="og:image" content="https://dddivano.github.io/avatar.jpeg" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="avatar.jpeg" />
+<link rel="apple-touch-icon" href="avatar.jpeg" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>if (typeof tailwind !== 'undefined') tailwind.config = { darkMode: 'class' };</script>
 <style>
-  .fade-up { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
-  .fade-up.in { opacity: 1; transform: none; }
+  /* 入场动画只在 JS 可用时生效，否则 JS 一挂整页就是白的 */
+  html.js .fade-up { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+  html.js .fade-up.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html.js .fade-up { opacity: 1; transform: none; transition: none; }
+  }
+
   @media print {
     .no-print { display: none !important; }
     body { background: #fff !important; color: #000 !important; }
     .card { break-inside: avoid; border-color: #ddd !important; }
+    /* 没滚到的区块此时还是 opacity:0，不修的话 PDF 会缺内容 */
+    .fade-up { opacity: 1 !important; transform: none !important; }
+
+    /* 深色模式下打印：子元素自带 dark:text-slate-300 等颜色，会盖掉 body 的黑色，
+       导致浅灰文字打在白底上几乎看不见。纯 CSS 强制拉回浅色，
+       不依赖 beforeprint 事件（Safari 上不可靠）。 */
+    html.dark { color-scheme: light; }
+    html.dark body,
+    html.dark body * {
+      background-color: transparent !important;
+      color: #1f2937 !important;
+      border-color: #d1d5db !important;
+      box-shadow: none !important;
+    }
+    html.dark body { background-color: #fff !important; }
+    html.dark .accent { color: #0369a1 !important; }
+    html.dark .dot { background-color: #0284c7 !important; }
+    html.dark blockquote { border-left-color: #0284c7 !important; }
   }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 antialiased">
 
+<a href="#top" class="no-print sr-only focus:not-sr-only focus:absolute focus:z-30 focus:m-3 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:ring-2 focus:ring-sky-500 dark:focus:bg-slate-900">跳到正文</a>
+
 <!-- 顶部导航 -->
 <header class="no-print sticky top-0 z-20 backdrop-blur bg-slate-50/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800">
-  <nav class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between text-sm">
-    <a href="#top" class="font-semibold tracking-tight" id="nav-name"></a>
-    <div class="flex items-center gap-1 sm:gap-4">
-      <a href="#experience" class="hidden sm:inline hover:text-sky-600 dark:hover:text-sky-400">经历</a>
-      <a href="#featured" class="hidden sm:inline hover:text-sky-600 dark:hover:text-sky-400">国家项目</a>
-      <a href="#projects" class="hidden sm:inline hover:text-sky-600 dark:hover:text-sky-400">项目</a>
-      <a href="#skills" class="hidden sm:inline hover:text-sky-600 dark:hover:text-sky-400">技能</a>
-      <button id="theme-toggle" title="切换主题"
-        class="ml-2 w-8 h-8 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800">◐</button>
-      <button onclick="window.print()" title="打印 / 存 PDF"
-        class="w-8 h-8 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800">⎙</button>
+  <nav aria-label="页面内导航" class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between text-sm">
+    <a href="#top" id="nav-name" class="font-semibold tracking-tight shrink-0"></a>
+    <div class="flex items-center gap-2.5 sm:gap-4 text-[13px] sm:text-sm">
+      <a href="#experience" class="hover:text-sky-600 dark:hover:text-sky-400">经历</a>
+      <a href="#featured" class="hover:text-sky-600 dark:hover:text-sky-400">国家项目</a>
+      <a href="#projects" class="hover:text-sky-600 dark:hover:text-sky-400">项目</a>
+      <a href="#skills" class="hover:text-sky-600 dark:hover:text-sky-400">技能</a>
+      <button id="theme-toggle" type="button" aria-label="切换深色 / 浅色主题" title="切换主题"
+        class="ml-1 w-8 h-8 shrink-0 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"><span aria-hidden="true">◐</span></button>
+      <button id="print-btn" type="button" aria-label="打印或另存为 PDF" title="打印 / 存 PDF"
+        class="w-8 h-8 shrink-0 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"><span aria-hidden="true">⎙</span></button>
     </div>
   </nav>
 </header>
@@ -51,7 +94,7 @@
     <div id="avatar" class="shrink-0"></div>
     <div class="min-w-0">
       <h1 id="name" class="text-3xl sm:text-4xl font-bold tracking-tight"></h1>
-      <p id="tagline" class="mt-2 text-sky-600 dark:text-sky-400"></p>
+      <p id="tagline" class="accent mt-2 text-sky-600 dark:text-sky-400"></p>
       <p id="meta" class="mt-1 text-sm text-slate-500 dark:text-slate-400"></p>
       <div id="links" class="mt-4 flex flex-wrap gap-2 text-sm"></div>
     </div>
@@ -63,25 +106,25 @@
 
   <!-- 经历 -->
   <section id="experience" class="fade-up mt-16">
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400">这些年做了什么</h2>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">这些年做了什么</h2>
     <div id="timeline" class="mt-6 border-l border-slate-200 dark:border-slate-800"></div>
   </section>
 
   <!-- 横向经历 -->
   <section id="featured" class="fade-up mt-16">
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400">Selected Contributions</h2>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">国家项目与标准化</h2>
     <div id="featured-list" class="mt-6 space-y-4"></div>
   </section>
 
   <!-- 项目 -->
   <section id="projects" class="fade-up mt-16">
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400">项目与开源</h2>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">项目与开源</h2>
     <div id="project-grid" class="mt-6 grid sm:grid-cols-2 gap-4"></div>
   </section>
 
   <!-- 技能 -->
   <section id="skills" class="fade-up mt-16">
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-400">技能</h2>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">技能</h2>
     <div id="skill-list" class="mt-6 space-y-4"></div>
   </section>
 

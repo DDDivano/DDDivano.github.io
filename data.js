@@ -1,10 +1,24 @@
 // ===================================================================
 // 全站内容都在这个文件里。改这里就行，不用碰 index.html。
+// 唯一例外：index.html 里的 <title> 和 og: 系列 meta 是静态的
+// （抓取器和分享卡片不跑 JS），改了下面的 site 字段记得同步过去。
 // ===================================================================
 window.RESUME = {
+  // ---------- 站点元信息（SEO / 分享卡片）----------
+  site: {
+    url: "https://dddivano.github.io/",
+    repo: "https://github.com/DDDivano/DDDivano.github.io",
+    // 浏览器标签页和搜索结果里的标题
+    pageTitle: "郑天宇 Divano Zheng · AI Infra 质量工程",
+    // 搜索摘要 / 微信、Slack、LinkedIn 分享卡片的描述
+    description:
+      "百度 AI Infra 质量工程师。飞桨 PaddlePaddle 框架级质量体系负责人，FastDeploy / SGLang 推理引擎 CI-CE 从 0 到 1，现在做 SWE 数据质量与大模型评测。",
+  },
+
   // ---------- 顶部 ----------
   profile: {
     name: "Divano Zheng",
+    nameZh: "郑天宇",
     handle: "Divano",
     tagline: "AI 质量工程 · 深度学习框架 · 大模型推理 · 数据质量",
     // 支持两种轻标记：**加粗**、段首 "> " 渲染成引用块
@@ -18,8 +32,9 @@ window.RESUME = {
       "> 好的质量工程，不是写更多测试，而是把质量问题变成可以被系统发现、度量和持续解决的问题。",
     ],
     location: "北京",
-    // 头像：放一张图到 assets/avatar.jpg，或者留空用首字母占位
+    // 头像：放一张图在仓库根目录，或者留空用首字母占位
     avatar: "avatar.jpeg",
+    avatarAlt: "郑天宇的头像",
     links: [
       { label: "GitHub", url: "https://github.com/DDDivano" },
       { label: "邮箱", url: "mailto:DDDivano@outlook.com" },
@@ -27,15 +42,13 @@ window.RESUME = {
   },
 
   // ---------- 数字亮点（2 行 × 3 列）----------
-  // Star 合计 = 下面 projects 里列出的仓库之和，2026-09 抓取：
-  // Paddle 24.1k + PaddleOCR 89.2k + FastDeploy 3.7k + PaddleTest 47 ≈ 117k
   highlights: [
     { value: "8 年+", label: "AI Infra 质量工程" },
     { value: "10 万+", label: "算子 / 接口 / 子图测试用例" },
     { value: "800+", label: "覆盖的开源模型" },
     { value: "60+", label: "自动化交付的框架版本" },
     { value: "31 万+", label: "拦截的异常用例" },
-    { value: "12 万+", label: "参与项目累计 GitHub Star" },
+    { value: "10+", label: "国家级项目验收测试" },
   ],
 
   // ---------- 这些年做了什么 ----------
@@ -161,7 +174,9 @@ window.RESUME = {
 
   // ---------- 页脚 ----------
   footer: {
-    note: "这个页面本身也是开源的，源码在 GitHub 上。",
+    note: "这个页面本身也是开源的。",
+    // 想在页脚放一个指向仓库的链接，就把 repoLabel 填上（如 "查看源码"）
+    repoLabel: "",
     updated: "2026-09",
   },
 };
